@@ -1,4 +1,5 @@
 ﻿using LocaLINK.Contracts;
+using LocaLINK.Repository;
 using LocaLINK.Utils;
 using System;
 using System.Collections.Generic;
@@ -114,7 +115,7 @@ namespace LocaLINK.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult SignUp(User_Account ua, String ConfirmPass)
+        public ActionResult SignUp(User_Account ua, string ConfirmPass)
         {
             if (!ua.password.Equals(ConfirmPass))
             {
@@ -127,6 +128,22 @@ namespace LocaLINK.Controllers
             {
                 ModelState.AddModelError(String.Empty, ErrorMessage);
 
+                ViewBag.Role = Utilities.ListRole;
+                return View(ua);
+            }
+
+            var user = _userManager.GetUserByEmail(ua.email);
+            string verificationCode = ua.code;
+
+            string emailBody = $"Your verification code is: {verificationCode}";
+            string errorMessage = "";
+
+            var mailManager = new MailManager();
+            bool emailSent = mailManager.SendEmail(ua.email, "Verification Code", emailBody, ref errorMessage);
+
+            if (!emailSent)
+            {
+                ModelState.AddModelError(String.Empty, errorMessage);
                 ViewBag.Role = Utilities.ListRole;
                 return View(ua);
             }

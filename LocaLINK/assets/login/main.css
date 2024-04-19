@@ -144,7 +144,7 @@ iframe {
   font-family: Poppins-Regular;
   font-size: 13px;
   line-height: 1.5;
-  color: #666666;
+  color: #004e98;
 }
 
 
@@ -171,7 +171,7 @@ iframe {
 }
 
 .wrap-login100 {
-  width: 960px;
+  width: 65%;
   border-radius: 10px;
   overflow: hidden;
 
@@ -182,12 +182,13 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 40px;
 }
 
 /*------------------------------------------------------------------
 [  ]*/
 .login100-pic {
-  width: 316px;
+  width: 400px;
 }
 
 .login100-pic img {
@@ -343,6 +344,7 @@ iframe {
 
 .login100-form-btn:hover {
   background: #333333;
+  color:#fff;
 }
 
 .signup100-form-btn {
@@ -373,6 +375,7 @@ iframe {
 
 .signup100-form-btn:hover {
   background: #004e98;
+  color:#fff;
 }
 
 
